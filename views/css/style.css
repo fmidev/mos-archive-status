@@ -1,0 +1,53 @@
+//table th + th { border-left:2px solid black; }
+#hdr {
+  border: 1px solid black;
+}
+#data {
+  border: 1px solid black;
+//   width: 100%;
+}
+#data th {
+  font-size: 8pt;
+  background-color: #FFF;
+  border-bottom: 1px solid black;
+}
+#data th + th { 
+  border-left:2px solid black; 
+}
+
+#data tr td:nth-child(2n+2) { 
+  border-left:2px solid black; 
+}
+
+#data tbody td {
+  font-size: 7pt;
+  text-align: center;
+}
+
+.hover { 
+  outline-style: double;
+  background-color: #eee;
+  border-top: 2px solid black;
+}
+
+.toofew {
+  background-color: #FF0000;
+}
+
+.toomany {
+  background-color: #db54eb;
+}
+
+.normal {
+  background-color: #ffffff;
+}
+
+.skiprow {
+  background-color: #A2A2A2;
+  border-left: 0px !important;
+  border: 0px !important;
+}
+.nodisplay {
+  display:none
+}
+

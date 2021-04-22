@@ -1,0 +1,20 @@
+{
+  "name": "mos-archive-status",
+  "version": "0.0.1",
+  "description": "mos-archive status page",
+  "author": "Mikko Partio <mikko.partio@fmi.fi>",
+  "license": "MIT",
+  "main": "app.js",
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "http": "0.0.1-security",
+    "jquery-stickytable": "^3.0.0",
+    "pg": "^8.4.0"
+  }
+}
