@@ -306,7 +306,7 @@
 
         const num_days = Math.ceil((end - beg) / (86400 * 1000))
 
-        return num_days * 2 * 32 // days, atimes, params
+        return num_days * 2 * (cols.length - 1); // days, atimes, params
       })();
 
       $('#loadedratio').text((100 * totalValidCount / totalcount).toFixed(2) + '%');
