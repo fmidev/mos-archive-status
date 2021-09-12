@@ -91,7 +91,11 @@
       const req_count = req_counts[param]
 
       if ((param == 't_mean_k' || param == 't_stddev_k' || param == 'ceil_m') && ymd < 20161123) {
-        return 0
+        return 0;
+      }
+      // https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model/cycle-41r1
+      else if ((param == 'precform_n' || param == 'vv_m' || param == 'iffg_ms') && ymd < 20150512) {
+        return 0;
       }
       return req_count
     }
