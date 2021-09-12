@@ -14,6 +14,7 @@
       <li>ratio of data available: <span style='background-color: #f1f1f1' id='loadedratio'></span></li>
     </ul>
     </div>
+    <div>show only dates with missing data: <input type='checkbox' id='show-only-missing' name='show-only-missing'></input></div>
     <div><p>Color legend:</p></div>
     <table id="hdr">
       <tr><td></td><td>Data OK</td><td style="background-color: #FF0000">Too few data</td><td style="background-color: #db54eb">Too much data</td></tr></table>
@@ -222,7 +223,9 @@
 
         const date = new Date(parseInt(origindate))
 
-        r[++j] = '<tr class="tr' + year + '">'
+        r[++j] = '<tr class="tr' + year + ' datarow">'
+
+        var extraClass = '';
         $.each(cols, function(k, param) {
           if (param == "origintime") {
 
@@ -233,7 +236,7 @@
                 r[++j] = year
                 r[++j] = ' (hide)</span></td></tr><tr class="tr'
                 r[++j] = year
-                r[++j] = '">'
+                r[++j] = ' datarow">'
               }
 
             r[++j] = '<td style="background-color: #FFFFFF">' + FormatTime(date) + '</td>'
@@ -245,7 +248,7 @@
 
           for (var i = 0; i < counts.length; i++) {
             const status = getStatus(param, counts[i], date);
-            if (status == 0) { validcount++; }
+            if (status == 0) { validcount++; }
 
             r[++j] = '<td class="'
             r[++j] = getClass(status)
@@ -350,6 +353,18 @@
 
       toggleTableRows(year, text);
     })
+
+    $('#show-only-missing').change(function() {
+      if (this.checked) {
+        $('#data tr.datarow').addClass('nodisplay');
+        $('#data tr:has(td.toofew)').removeClass('nodisplay');
+      }
+      else {
+        $('#data tr.datarow').removeClass('nodisplay');
+      }
+    });
+
+    $('#show-only-missing').removeAttr('checked');
   });
     </script>
   </body>
