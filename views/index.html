@@ -270,7 +270,8 @@
     }
  
     var years = []
-    for (i = 2021; i >= 2011; i--) {
+    const currentYear = new Date().getFullYear()
+    for (i = currentYear; i >= 2011; i--) {
       years.push(i)
     }
 
@@ -310,16 +311,11 @@
 
       $('#loadedratio').text((100 * totalValidCount / totalcount).toFixed(2) + '%');
 
-      toggleTableRows(2020, "hide")
-      toggleTableRows(2019, "hide")
-      toggleTableRows(2018, "hide")
-      toggleTableRows(2017, "hide")
-      toggleTableRows(2016, "hide")
-      toggleTableRows(2015, "hide")
-      toggleTableRows(2014, "hide")
-      toggleTableRows(2013, "hide")
-      toggleTableRows(2012, "hide")
-      toggleTableRows(2011, "hide")
+      // hide all but current year
+      const lastYear = new Date().getFullYear() - 1
+      for (i = lastYear; i >= 2011; i--) {
+        toggleTableRows(i, "hide")
+      }
     }
 
 
