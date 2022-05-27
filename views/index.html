@@ -275,7 +275,7 @@
       years.push(i)
     }
 
-    var totalValidCount = 0;
+    var totalValidCount = [];
 
     function getDataRecursive() {
       if (years.length == 0) { 
@@ -290,7 +290,7 @@
       $.getJSON("https://status.mos-archive.apps.ocp.fmi.fi/data/" + curyear, function(data) {
 
         const parsed = parse(data);
-        totalValidCount += addToTable(parsed, curyear);
+        totalValidCount.push(addToTable(parsed, curyear));
         getDataRecursive();
       });
     }
@@ -298,18 +298,18 @@
     getDataRecursive();
 
     function finalize() {
-      const totalcount = (function() {
+      const totalCount = (function() {
         const beg = new Date(2011, 11, 1); // Dec 01
-        const endtime = new Date();
-        let [month, day, year]    = ( new Date() ).toLocaleDateString().split("/")
-        const end = new Date(year, month-1, day);
+        const end = new Date();
 
         const num_days = Math.ceil((end - beg) / (86400 * 1000))
 
         return num_days * 2 * (cols.length - 1); // days, atimes, params
       })();
 
-      $('#loadedratio').text((100 * totalValidCount / totalcount).toFixed(2) + '%');
+      const totalValidSum = totalValidCount.reduce((a, b) => a + b, 0)
+
+      $('#loadedratio').text((100 * totalValidSum / totalCount).toFixed(2) + '%');
 
       // hide all but current year
       const lastYear = new Date().getFullYear() - 1
