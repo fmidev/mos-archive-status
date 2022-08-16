@@ -30,6 +30,7 @@
       'bldis_jm2',
       'ceil_m',
       'cldbase_m',
+      'ffg_mean_ms',
       'ffg_ms',
       'fllat_jm2',
       'flsen_jm2',
@@ -40,23 +41,29 @@
       'nh_0to1',
       'nl_0to1',
       'nm_0to1',
+      'p_mean_pa',
       'p_pa',
       'precform_n',
       'q_kgkg_hybrid',
       'rnetlwa_jm2',
+      'rnetswa_mean_jm2',
       'rnetswa_jm2',
       'rr_kgm2',
       'sd_tm2',
       'skt_k',
       'tcw_kgm2',
-      'td_k', 
+      'td_mean_k',
+      'td_k',
+      't_mean_k',
+      't_mean_k_pressure',
       't_k',
       't_k_hybrid',
       't_k_pressure',
-      'tmax_k',
-      't_mean_k',
-      'tmin_k',
       't_stddev_k',
+      'tmax_k',
+      'tmin_k',
+      'u_mean_ms_pressure',
+      'v_mean_ms_pressure',
       'u_ms',
       'v_ms',
       'u_ms_100m',
@@ -73,6 +80,7 @@
         else if (['t_k_hybrid','q_kgkg_hybrid'].includes(v)) { cnt = 750; }
         else if (['t_k_pressure','z_m2s2_pressure'].includes(v)) { cnt = 500; }
         else if (['t_mean_k', 't_stddev_k'].includes(v)) { cnt = 66; }
+        else if (['ffg_mean_ms','p_mean_pa','rnetswa_mean_jm2','td_mean_k','t_mean_k_pressure','u_mean_ms_pressure','v_mean_ms_pressure'].includes(v)) { cnt = 85; }
         ret[v] = cnt;
       });
       return ret;
@@ -95,6 +103,9 @@
       }
       // https://www.ecmwf.int/en/forecasts/documentation-and-support/changes-ecmwf-model/cycle-41r1
       else if ((param == 'precform_n' || param == 'vv_m' || param == 'iffg_ms') && ymd < 20150513) {
+        return 0;
+      }
+      else if ((param == 'ffg_mean_ms' || param == 'p_mean_pa' || param == 'rnetswa_mean_jm2' || param == 'td_mean_k') && ymd < 20220714) {
         return 0;
       }
       return req_count
