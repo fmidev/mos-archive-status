@@ -63,8 +63,6 @@
       't_stddev_k',
       'tmax_k',
       'tmin_k',
-      'u_mean_ms_pressure',
-      'v_mean_ms_pressure',
       'u_ms',
       'v_ms',
       'u_ms_100m',
@@ -81,7 +79,7 @@
         else if (['t_k_hybrid','q_kgkg_hybrid'].includes(v)) { cnt = 750; }
         else if (['t_k_pressure','z_m2s2_pressure'].includes(v)) { cnt = 500; }
         else if (['t_mean_k', 't_stddev_k'].includes(v)) { cnt = 66; }
-        else if (['ff_mean_ms_pressure','ffg_mean_ms','p_mean_pa','rnetswa_mean_jm2','td_mean_k','t_mean_k_pressure','u_mean_ms_pressure','v_mean_ms_pressure'].includes(v)) { cnt = 85; }
+        else if (['ff_mean_ms_pressure','ffg_mean_ms','p_mean_pa','rnetswa_mean_jm2','td_mean_k','t_mean_k_pressure'].includes(v)) { cnt = 85; }
         ret[v] = cnt;
       });
       return ret;
