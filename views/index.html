@@ -30,6 +30,7 @@
       'bldis_jm2',
       'ceil_m',
       'cldbase_m',
+      'ff_mean_ms_pressure',
       'ffg_mean_ms',
       'ffg_ms',
       'fllat_jm2',
@@ -80,7 +81,7 @@
         else if (['t_k_hybrid','q_kgkg_hybrid'].includes(v)) { cnt = 750; }
         else if (['t_k_pressure','z_m2s2_pressure'].includes(v)) { cnt = 500; }
         else if (['t_mean_k', 't_stddev_k'].includes(v)) { cnt = 66; }
-        else if (['ffg_mean_ms','p_mean_pa','rnetswa_mean_jm2','td_mean_k','t_mean_k_pressure','u_mean_ms_pressure','v_mean_ms_pressure'].includes(v)) { cnt = 85; }
+        else if (['ff_mean_ms_pressure','ffg_mean_ms','p_mean_pa','rnetswa_mean_jm2','td_mean_k','t_mean_k_pressure','u_mean_ms_pressure','v_mean_ms_pressure'].includes(v)) { cnt = 85; }
         ret[v] = cnt;
       });
       return ret;
@@ -106,6 +107,9 @@
         return 0;
       }
       else if ((param == 'ffg_mean_ms' || param == 'p_mean_pa' || param == 'rnetswa_mean_jm2' || param == 'td_mean_k') && ymd < 20220714) {
+        return 0;
+      }
+      else if ((param == 't_mean_k_pressure' || param == 'ff_mean_ms_pressure') && ymd < 20221128) {
         return 0;
       }
       return req_count
@@ -297,7 +301,7 @@
       var curyear = years.shift();
       console.log(curyear)
 
-//      $.getJSON("http://pansuola:10000/data/" + curyear, function(data){
+//      $.getJSON("http://pansuola.fmi.fi:10000/data/" + curyear, function(data){
       $.getJSON("https://status.mos-archive.apps.ocp.fmi.fi/data/" + curyear, function(data) {
 
         const parsed = parse(data);
