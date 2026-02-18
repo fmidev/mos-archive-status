@@ -119,9 +119,7 @@
 
     function getDaysInYear(year) {
       const currYear = new Date().getFullYear();
-      if (year == 2011) {
-        return 31
-      } else if (currYear == year) {
+      if (currYear == year) {
         // use date of yesterday so current day results are not counted
         return getDaysIntoYear(new Date(new Date().setDate(new Date().getDate()-1)))
       } else {
@@ -284,7 +282,7 @@
  
     var years = []
     const currentYear = new Date().getFullYear()
-    for (i = currentYear; i >= 2011; i--) {
+    for (i = currentYear; i >= 2016; i--) {
       years.push(i)
     }
 
@@ -299,7 +297,6 @@
       var curyear = years.shift();
       console.log(curyear)
 
-//      $.getJSON("http://pansuola.fmi.fi:10000/data/" + curyear, function(data){
       $.getJSON("https://status.mos-archive.apps.ocp.fmi.fi/data/" + curyear, function(data) {
 
         const parsed = parse(data);
@@ -312,7 +309,7 @@
 
     function finalize() {
       const totalCount = (function() {
-        const beg = new Date(2011, 11, 1); // Dec 01
+        const beg = new Date(2016, 0, 1); // Jan 01
         const end = new Date();
 
         const num_days = Math.ceil((end - beg) / (86400 * 1000))
@@ -326,7 +323,7 @@
 
       // hide all but current year
       const lastYear = new Date().getFullYear() - 1
-      for (i = lastYear; i >= 2011; i--) {
+      for (i = lastYear; i >= 2016; i--) {
         toggleTableRows(i, "hide")
       }
     }

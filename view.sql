@@ -6,7 +6,7 @@ WITH dates AS (
 SELECT 
   t.day 
 FROM 
-  generate_series(timestamp '2011-12-01', current_date::timestamp - interval '12 hours', interval '12 hours') AS t(day)
+  generate_series(timestamp '2016-01-01', current_date::timestamp - interval '12 hours', interval '12 hours') AS t(day)
 )
 SELECT
   extract(epoch FROM d.day) AS origintime,
